@@ -14,8 +14,8 @@
 ### Features
 
 - Accessible via `Events` menu
-- Allow sorting by column header
-- Allow events to be filtered by `Employee`, `Reported`, `Vehicle`, `Status`
+- Allow `Type`, `Reported`, `Duration` to be sorted by clicking the column header
+- Allow events to be filtered by `Type`, `Employees`, `Vehicles`, `Reported`, `Tags`
 
 
 ## Edit/Create
