@@ -37,104 +37,158 @@ AtFault|InYard|Owned|Damaged|Scratched|Towed|Injury|Preventable|Recordable|Point
 ||||||X||||0.5
 ||||X||||||0.34
 
-## Model
+## Model (logical)
 
 ### `Event`
 Abstracted model for persisting events
 name|data type|comments
 ---|---|---
-Id|`int`|primary key
+Id|`int`|unique identifier
 Type|`EventType`|`Accident`, `Customer Service`, `Vehicle Breakdown`
-AtFault|`bit`|
-InYard|`bit`|
-Owned|`bit`|
-Damaged|`bit`|
-Scratched|`bit`|
-Towed|`bit`|
-Injury|`bit`|
-Preventable|`bit`|
-Recordable|`bit`|
+AtFault|`bool`|
+InYard|`bool`|
+Owned|`bool`|
+Damaged|`bool`|
+Scratched|`bool`|
+Towed|`bool`|
+Injury|`bool`|
+Preventable|`bool`|
+Recordable|`bool`|
 Occurred|`date`|
 Reported|`date`| `>= Occcurred`
 ReportedBy|`Employee`|`Employee` that reported the event
-EstimatedCost|`decimal`|`>0` or `null`
-Issue|`text`|
-Priviledged|`bit`|
+EstimatedCost|`float`|`>0` or `null`
+Issue|`string`|
+Priviledged|`bool`|
 Employees|`Employee[]`|zero or more `Employee`s
 Vehicles|`Vehicle[]`|zero or more `Vehicle`s
 Tags|`Tag[]`|zero or more `Tags`
 Location|`string`|free-entry
-Latitude|`single`|geocoded [wgs84] `Location`
-Longitude|`single`|geocoded [wgs84] `Location`
+Latitude|`float`|geocoded [wgs84] `Location`
+Longitude|`float`|geocoded [wgs84] `Location`
 Resolved|`date`|`>= Reported`
 ResolvedBy|`Employee`|`Employee` that resolved the incident
-Resolution|`text`|
-ActualCost|`decimal`|`>0` or `null`
+Resolution|`string`|
+ActualCost|`float`|`>0` or `null`
 Attachments|`Attachment[]`|zero or more `Attachment`s
 
-### `EventType`
-
-`Type`s assigned to `Event`; (pne-to-many)
+### `Attachment`
+Binary files (audio|video|pictures|documents) related to the `Event`
 name|data type|comments
 ---|---|---
+Name|`string`|
+Data|`byte[]`|
+MimeType|`string`|example: `application/pdf`
+
+### `Employee`
+The BambooHr employee model
+
+### `EventType`
+name|data type|comments
+---|---|---
+Name|`string`|
+
+### `Tag`
+Flexible categorization
+name|data type|comments
+---|---|---
+Name|`string`|
+
+### `Vehicle`
+Bus, truck, etc.
+name|data type|comments
+---|---|---
+Name|`string`|
+Active|`bool`|
+
+## Model (physical; relational)
+
+### `Event`
+- `Event >-- Employee` (Reported)
+- `Event >-- Employee` (Resolved)
+- `Event --< EventAttachment`
+- `Event --< EventEmployee`
+- `Event --< EventTag`
+- `Event >-- EventType`
+- `Event --< EventVehicle`
+
+name|data type|comments
+---|---|---
+Id|`int`|primary key
+EventTypeId|`int`|foreign key
+ReportedById|`int`|foreign key
+ResolvedById|`int`|foreign key
+
+### `EventType`
+- `EventType --< Event`
+
+name|data type|comments
+---|---|---
+Id|`int`|primary key
 Name|`string`|primary key
 
 ### `EventTag`
-`Tag`s assigned to `Event`; (many-to-one)
+- `EventTag >-- Event`
+- `EventTag >-- Tag`
+
 name|data type|comments
 ---|---|---
 EventId|`int`|primary key
 TagId|`int`|primary key
 
 ### `Tag`
-Flexible categorization; (one-to-many)
+- `Tag --< EventTag`
+
 name|data type|comments
 ---|---|---
 Id|`int`|primary key
 Name|`string`|
 
-### `EventEmployee`
-`Employee`s involved in the `Event`; (many-to-many)
-name|data type|comments
----|---|---
-Id|`int`|primary key
-IncidentId|`int`|foreign key
-EmployeeId|`int`|foreign key; references BambooHr key
+### `EventAttachment`
+- `EventAttachment >-- Event`
 
-### `EventVehicle`
-`Vehicle`s involved in the `Event`; (many-to-many)
-name|data type|comments
----|---|---
-Id|`int`|primary key
-IncidentId|`int`|foreign key
-VehicleId|`int`|foreign key
-
-### `Vehicle`
-List of `Vehicle`s
-name|data type|comments
----|---|---
-Id|`int`|primary key
-Name|`string`|
-
-## `EventAttachment`
-Binary files (audio|video|pictures|documents) related to the `Event`; (one-to-many)
 name|data type|comments
 ---|---|---
 Id|`int`|primary key
 EventId|`int`|foreign key
+Name|`string`|
 MimeType|`string`|`application/pdf`,`image/png`
 Data|`byte[]`|byte-encoded data
-Notes|`text`|
 
-<!-- ## Event Link
-Links related to the Event; (one-to-many)
+### `EventEmployee`
+- `EventEmployee >-- Event`
+- `EventEmployee >-- Employee`
+
+name|data type|comments
+---|---|---
+IncidentId|`int`|primary key
+EmployeeId|`int`|primary key; (BambooHr key)
+
+### `Employee`
+- `Employee --< EventEmployee`
+- `Employee --< Event` (Reported)
+- `Employee --< Event` (Resolved)
+
 name|data type|comments
 ---|---|---
 Id|`int`|primary key
-EventId|`int`|foreign key
-Title|`int`|Page's title
-Uri|`int`|Uri to resource
-Notes|`text`| -->
+
+### `EventVehicle`
+- `EventVehicle >-- Event`
+- `EventVehicle >-- Vehicle`
+
+name|data type|comments
+---|---|---
+EventId|`int`|primary key
+VehicleId|`int`|primary key
+
+### `Vehicle`
+- `Vehicle --< EventVehicle`
+
+name|data type|comments
+---|---|---
+Id|`int`|primary key
+Name|`string`|
 
 ## Questions
 
