@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/51a15c58eb.js" crossorigin="anonymous"></script>
+
+    <title>Events</title>
+
+    <style>
+      body { padding-top: 100px; }
+    </style>
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Lorenz Bus Service</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Info</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">People</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Hiring</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Events</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </nav>
+    
+    <main class="container">
+      <div class="bg-light p-5 rounded">
+
+        <h1>Events</h1>
+    
+        <table class="table table-striped table-small">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Type</th>
+                <th scope="col">Employees</th>
+                <th scope="col">Vehicles</th>
+                <th scope="col">Reported</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Tags <i class="fas fa-tags"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="/events/100"><i class="far fa-edit"></i></a></td>
+                <td>Vehicle Breakdown</td>
+                <td>
+                  <a href="/employees/1">Doe, John</a>
+                  <a href="/employees/3">Anderson, Neo</a>
+                </td>
+                <td><a href="/vehicles/100061">100061</a></td>
+                <td>03/01/2021</td>
+                <td>5d 12h</td>
+                <td>
+                  <span class="badge rounded-pill bg-primary">lorem</span>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="/events/101"><i class="far fa-edit"></i></a></td>
+                <td>Accident</td>
+                <td><a href="/employee/2">Doe, Jane</a></td>
+                <td>
+                  <a href="/vehicles/100061">100061</a>
+                  <a href="/vehicles/100061">Premier</a>
+                </td>
+                <td>03/03/2021</td>
+                <td>2d 6h</td>
+                <td>
+                    <span class="badge rounded-pill bg-primary">ipsum</span>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="/events/102"><i class="far fa-edit"></i></a></td>
+                <td>Customer Service</td>
+                <td><a href="/employee/4">Last, Firsrt</a></td>
+                <td></td>
+                <td>03/05/2021</td>
+                <td>0d 1h</td>
+                <td>
+                  <span class="badge rounded-pill bg-primary">complaint</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>    
+    </main><!-- /.container -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+  </body>
+</html>
