@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Incident</title>
+
+    <style>
+      body { padding-top: 100px; }
+    </style>
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>    
+      </div>
+    </nav>
+    
+    <main class="container">
+      <div class="bg-light p-5 rounded">
+
+        <h1>Incident - Create</h1>
+    
+        <form>
+          <h2>Description</h2>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Summary</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+          </div>
+  
+          <h2>Categorization</h2>
+          <div class="mb-3">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Type</option>
+              <option value="1">Accident</option>
+              <option value="2">Customer Service</option>
+              <option value="3">Other</option>
+            </select>  
+          </div>
+
+          <div class="mb-3">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Status</option>
+              <option value="1">Open</option>
+              <option value="2">Closed</option>
+            </select>  
+          </div>
+
+          <div class="mb-3">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Priority</option>
+              <option value="1">High</option>
+              <option value="2">Medium</option>
+              <option value="3">Low</option>
+            </select>  
+          </div>
+
+          <div class="mb-3">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Severity</option>
+              <option value="1">Critical</option>
+              <option value="2">Low</option>
+            </select>  
+          </div>
+
+          <h2>Events</h2>
+          <div class="mb-3">
+            <label for="inputOpened" class="form-label">Opened</label>
+            <input type="date" class="form-control" id="inputOpened">
+          </div>
+
+          <div class="mb-3">
+            <label for="inputClosed" class="form-label">Closed</label>
+            <input type="date" class="form-control" id="inputClosed">
+          </div>
+
+          <label for="inputActualCode" class="form-label">Estimated Cost</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input type="text" class="form-control" aria-label="Estimated Cost" placeholder="100" >
+          </div>
+
+          <label for="inputActualCode" class="form-label">Actual Cost</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input type="text" class="form-control" aria-label="Actual Cost" placeholder="100" >
+          </div>
+
+          <h2>Pictures</h2>
+          <div class="input-group mb-3">
+            <img src="./female.png" height="200" width="200" class="img-thumbnail" alt="Female">
+            <img src="./male.jpg" height="200" width="200" class="img-thumbnail" alt="Male">  
+          </div>
+
+          <h2>Video</h2>
+          <div class="input-group mb-3">
+            <video autoplay controls class="embed-responsive-item" height="300" width="400">
+              <source src="./a-ha - Take On Me (Official Video).mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    
+
+      </div>
+    
+    </main><!-- /.container -->
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
