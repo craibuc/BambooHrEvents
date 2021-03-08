@@ -9,8 +9,8 @@
 ### Features
 
 - Accessible via `Events` menu
-- Allow `Type`, `Reported`, `Duration` to be sorted by clicking the column header; default sorting is `Reported` ascending
-- Allow events to be filtered by `Type`, `Employees`, `Vehicles`, `Reported`, `Tags`
+- Allow `Type`, `Involving`, `Vehicle`, `Reported`, `Duration` to be sorted by clicking the column header; default sorting is `Reported` ascending
+- Allow events to be filtered by `Type`, `Involving`, `Vehicle`, `Reported`, `Tags`
 
 ### Rules
 
@@ -56,8 +56,8 @@ AtFault|InYard|Owned|Damaged|Scratched|Towed|Injury|Preventable|Recordable|Point
 ### Features
 
 - Accessible via `Employee` > `Events` tab
-- Allow `Type`, `Points`, `Reported`, `Resolved` to be sorted by clicking the column header; default sorting is `Reported` ascending
-- Allow events to be filtered by `Type`, `Vehicles`, `Points`, `Reported`, `Resolved`, `Tags`
+- Allow `Type`, `Vehicle`, `Points`, `Reported`, `Resolved` to be sorted by clicking the column header; default sorting is `Reported` ascending
+- Allow events to be filtered by `Type`, `Vehicle`, `Points`, `Reported`, `Resolved`, `Tags`
 - Sum of all `Point`s for the employee located in the table's footer
 
 ## Model (logical)
@@ -77,15 +77,15 @@ Towed|`bool`|
 Injury|`bool`|
 Preventable|`bool`|
 Recordable|`bool`|
-Points|`float`|applies to all employees associated w/ the event
+Points|`float`|
 Occurred|`date`|
 Reported|`date`| `>= Occcurred`
 ReportedBy|`Employee`|`Employee` that reported the event
 EstimatedCost|`float`|`>0` or `null`
 Issue|`string`|
 Priviledged|`bool`|
-Employees|`Employee[]`|zero or more `Employee`s
-Vehicles|`Vehicle[]`|zero or more `Vehicle`s
+Involving|`Employee`|zero or one `Employee`
+Vehicle|`Vehicle`|zero or one `Vehicle`
 Tags|`Tag[]`|zero or more `Tags`
 Location|`string`|free-entry
 Latitude|`float`|geocoded [wgs84] `Location`
@@ -128,13 +128,15 @@ Active|`bool`|
 ## Model (physical; relational)
 
 ### `Event`
+- `Event >-- Employee` (Involving)
 - `Event >-- Employee` (Reported)
 - `Event >-- Employee` (Resolved)
 - `Event --< EventAttachment`
 - `Event --< EventEmployee`
 - `Event --< EventTag`
 - `Event >-- EventType`
-- `Event --< EventVehicle`
+<!-- - `Event --< EventVehicle` -->
+- `Event >-- Vehicle`
 
 name|data type|comments
 ---|---|---
@@ -179,6 +181,7 @@ Name|`string`|
 MimeType|`string`|`application/pdf`,`image/png`
 Data|`byte[]`|byte-encoded data
 
+<!--
 ### `EventEmployee`
 - `EventEmployee >-- Event`
 - `EventEmployee >-- Employee`
@@ -187,9 +190,11 @@ name|data type|comments
 ---|---|---
 IncidentId|`int`|primary key
 EmployeeId|`int`|primary key; (BambooHr key)
+-->
 
 ### `Employee`
-- `Employee --< EventEmployee`
+<!-- - `Employee --< EventEmployee` -->
+- `Employee --< Event` (Involving)
 - `Employee --< Event` (Reported)
 - `Employee --< Event` (Resolved)
 
@@ -197,6 +202,8 @@ name|data type|comments
 ---|---|---
 Id|`int`|primary key
 
+
+<!--
 ### `EventVehicle`
 - `EventVehicle >-- Event`
 - `EventVehicle >-- Vehicle`
@@ -205,9 +212,11 @@ name|data type|comments
 ---|---|---
 EventId|`int`|primary key
 VehicleId|`int`|primary key
+-->
 
 ### `Vehicle`
-- `Vehicle --< EventVehicle`
+<!-- - `Vehicle --< EventVehicle` -->
+- `Vehicle --< Event`
 
 name|data type|comments
 ---|---|---
